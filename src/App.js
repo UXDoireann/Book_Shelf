@@ -1,6 +1,8 @@
 import React from 'react'
 import './App.css'
-import BookList from './BookList'
+//import BookList from './BookList'
+//import BookSearch from './BookSearch'
+import Bookshelves from './Bookshelves'
 
 class BooksApp extends React.Component {
   /*state = {
@@ -27,7 +29,10 @@ class BooksApp extends React.Component {
 
   render() {
     return (
-      <BookList/>
+      <div>
+      <Bookshelves/>
+  
+      </div>
      /* <div className="app">
         {this.state.showSearchPage ? (
           <div className="search-books">
