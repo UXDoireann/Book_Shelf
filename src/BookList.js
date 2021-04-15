@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-//import ShelfSelect from './ShelfSelect'
+import ShelfSelect from './ShelfSelect'
 //import BooksApp from './App'
 
 class BookList extends Component{
@@ -27,8 +27,8 @@ console.log('Props',props)*/
                         <div className="book-cover" 
                         style={{width:128, height:188, backgroundImage: `url(${book.imageLinks.thumbnail})`}}/>
                         <div className ="book-title" > {book.title} </div> 
-                    
                         <div className ="book-authors" >{book.authors}</div>
+                       <ShelfSelect className="shelf-book-changer"/>
                         
                        </li>
                 
