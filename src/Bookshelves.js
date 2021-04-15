@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import BookList from './BookList'
 
-class Bookshelves extends Component{
+/*class Bookshelves extends Component{
 
 
    
@@ -47,4 +47,4 @@ class Bookshelves extends Component{
 
 
 
-export default Bookshelves
+export default Bookshelves*/
