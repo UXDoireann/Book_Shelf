@@ -2,19 +2,29 @@ import React from 'react'
 import './App.css'
 import BookShelf from './BookShelf'
 import * as BooksAPI from './BooksAPI'
-//import BookSearch from './BookSearch'
+import BookSearch from './BookSearch'
+
+
 
 class BooksApp extends React.Component {
   state = {
 
     books:[],
+
+    //query:""
     /**
      * TODO: Instead of using this state variable to keep track of which page
      * we're on, use the URL in the browser's address bar. This will ensure that
      * users can use the browser's back and forward buttons to navigate between
      * pages, as well as provide a good URL they can bookmark and share.
      */
-   /* showSearchPage: false*/
+   showSearchPage: false
+  }
+
+  changeShelf=(currentState)=>{
+    this.setState({
+      books:currentState.books.shelf = value
+    })
   }
   
 
@@ -28,11 +38,23 @@ class BooksApp extends React.Component {
      })
   }
 
+  /*componentDidMount(){
+    BooksAPI.search(query)
+     .then((query)=>{
+       query.setState(()=>({
+         query
+       }))
+       console.log(query)
+     })
+  }*/
+
   render() {
     return (
       <div>
-        
-      <BookShelf books={this.state.books}/>
+      <BookSearch showSearchPage={this.state.showSearchPage}/>
+      <BookShelf books={this.state.books}
+                 onChangeShelf={this.changeShelf}/>
+      
       
   
       </div>
@@ -53,7 +75,7 @@ class BooksApp extends React.Component {
                   However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                   you don't find a specific author or title. Every search is limited by search terms.
                 *///}
-               /* <input type="text" placeholder="Search by title or author"/>
+               /* 
 
               </div>
             </div>

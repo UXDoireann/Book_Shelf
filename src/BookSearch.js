@@ -1,36 +1,32 @@
-/*import React, {Component} from 'react'
-import * as BooksAPI from './BooksAPI'
+import React, {Component} from 'react'
+//import * as BooksAPI from './BooksAPI'
 
 
 class BookSearch extends Component{
 
-    state ={
-        query:""
-
-     
-    }
-
-    componentDidMount(){
-        BooksAPI.search(this.state.query)
-         .then((query)=>{
-           this.setState(()=>({
-             query
-           }))
-           console.log(query)
-         })
-        }
+   
 
 render(){
 
     return(
+        <div>
+    <div className="search-books">
+            <div className="search-books-bar">
+              <button className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</button>
+        <div className="search-books-input-wrapper">
+            <input type="text" placeholder="Search by title or author"/>
 
-        <form>
-            {this.state.query}
-        </form>
+        </div>
+        </div>
+            </div>
+            <div className="search-books-results">
+              <ol className="books-grid"></ol>
+            </div>
+            </div>
 
 
     )
 }
 }
 
-export default BookSearch*/
+export default BookSearch
