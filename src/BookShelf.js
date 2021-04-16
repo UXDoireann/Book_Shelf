@@ -3,8 +3,8 @@ import ShelfSelect from './ShelfSelect'
 
 
 class BookShelf extends Component{
-
-  
+    
+    
   
 
     render(){
@@ -31,7 +31,7 @@ class BookShelf extends Component{
                      style={{width:128, height:188, backgroundImage: `url(${book.imageLinks.thumbnail})`}}/>
                      <div className ="book-title" > {book.title} </div> 
                      <div className ="book-authors" >{book.authors}</div>
-                    <ShelfSelect className="shelf-book-changer"/>
+                    <ShelfSelect className="shelf-book-changer" onClick={()=>this.props.changeShelf(book)}/>
                    
                     </li>))}
                     </ol>
@@ -45,13 +45,13 @@ class BookShelf extends Component{
                      style={{width:128, height:188, backgroundImage: `url(${book.imageLinks.thumbnail})`}}/>
                      <div className ="book-title" > {book.title} </div> 
                      <div className ="book-authors" >{book.authors}</div>
-                    <ShelfSelect className="shelf-book-changer"/>
+                    <ShelfSelect className="shelf-book-changer"onClick={()=>this.props.changeShelf(book)} />
                     </li>
                 
             ))}</ol>
             </div>
             <div className= "bookshelf" >
-            <h1 className="bookshelf-title">Want to Read</h1>
+            <h1 className="bookshelf-title">Read</h1>
             <ol className = "books-grid">
             {alreadyRead.map(book=>(
                 <li key ={book.title}> 
@@ -59,7 +59,7 @@ class BookShelf extends Component{
                      style={{width:128, height:188, backgroundImage: `url(${book.imageLinks.thumbnail})`}}/>
                      <div className ="book-title" > {book.title} </div> 
                      <div className ="book-authors" >{book.authors}</div>
-                    <ShelfSelect className="shelf-book-changer"/>
+                    <ShelfSelect className="shelf-book-changer"onClick={()=>this.props.changeShelf(book)} />
                     </li>
                 
             ))}</ol>

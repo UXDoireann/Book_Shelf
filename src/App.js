@@ -21,11 +21,7 @@ class BooksApp extends React.Component {
    showSearchPage: false
   }
 
-  changeShelf=(currentState)=>{
-    this.setState({
-      books:currentState.books.shelf = value
-    })
-  }
+  
   
 
   componentDidMount(){
@@ -47,6 +43,15 @@ class BooksApp extends React.Component {
        console.log(query)
      })
   }*/
+
+  changeShelf=(book,shelf)=>{
+    shelf = book.shelf
+    this.setState((currentState)=>({
+      books: currentState.books.filter((b)=>b.shelf!==shelf).concat(currentState.books, book)})}
+      
+     
+    
+  
 
   render() {
     return (

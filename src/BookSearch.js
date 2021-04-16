@@ -1,9 +1,20 @@
 import React, {Component} from 'react'
-//import * as BooksAPI from './BooksAPI'
+import * as BooksAPI from './BooksAPI'
 
 
 class BookSearch extends Component{
 
+    state={
+        query:''
+    }
+
+    updateQuery=(query)=>{
+        this.setState(()=>({
+            query:query
+           
+        }))
+        
+    }
    
 
 render(){
@@ -12,9 +23,12 @@ render(){
         <div>
     <div className="search-books">
             <div className="search-books-bar">
-              <button className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</button>
+              <button className="close-search" >Close</button>
         <div className="search-books-input-wrapper">
-            <input type="text" placeholder="Search by title or author"/>
+            <input type="text" 
+            placeholder="Search by title or author"
+            value={this.state.query}
+            onChange={(event)=>this.updateQuery(event.target.value)}/>
 
         </div>
         </div>
