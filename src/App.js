@@ -45,9 +45,10 @@ class BooksApp extends React.Component {
   }*/
 
   changeShelf=(book,shelf)=>{
+    book=this.props.books.book
     shelf = book.shelf
     this.setState((currentState)=>({
-      books: currentState.books.filter((b)=>b.shelf!==shelf).concat(currentState.books, book)})}
+      books: currentState.books.filter((book)=>book.shelf!==shelf).concat(currentState.books, book)})}
       
      
     
