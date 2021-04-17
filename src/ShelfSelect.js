@@ -13,7 +13,7 @@ class ShelfSelect extends Component{
  
   handleChange=event=>{
    this.setState({value:event.target.value})
-   this.props.changeShelf(this.state.book, event.target.value)
+   this.props.changeShelf(this.props.book, event.target.value)
    event.preventDefault()
   }
 
