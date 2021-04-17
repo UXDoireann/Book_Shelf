@@ -31,7 +31,7 @@ class BookShelf extends Component{
                      style={{width:128, height:188, backgroundImage: `url(${book.imageLinks.thumbnail})`}}/>
                      <div className ="book-title" > {book.title} </div> 
                      <div className ="book-authors" >{book.authors}</div>
-                    <ShelfSelect className="shelf-book-changer" />
+                    <ShelfSelect className="shelf-book-changer" changeShelf={this.props.changeShelf} book={book}/>
                    
                     </li>))}
                     </ol>
@@ -45,7 +45,7 @@ class BookShelf extends Component{
                      style={{width:128, height:188, backgroundImage: `url(${book.imageLinks.thumbnail})`}}/>
                      <div className ="book-title" > {book.title} </div> 
                      <div className ="book-authors" >{book.authors}</div>
-                    <ShelfSelect className="shelf-book-changer" />
+                    <ShelfSelect className="shelf-book-changer" changeShelf={this.props.changeShelf} book={book} />
                     </li>
                 
             ))}</ol>
@@ -59,7 +59,7 @@ class BookShelf extends Component{
                      style={{width:128, height:188, backgroundImage: `url(${book.imageLinks.thumbnail})`}}/>
                      <div className ="book-title" > {book.title} </div> 
                      <div className ="book-authors" >{book.authors}</div>
-                    <ShelfSelect className="shelf-book-changer" />
+                    <ShelfSelect className="shelf-book-changer" changeShelf={this.props.changeShelf} book={book}/>
                     </li>
                 
             ))}</ol>

@@ -6,11 +6,15 @@ import React, {Component} from 'react';
 class ShelfSelect extends Component{
   state={
     value:'',
-    books:[]
+  
  
   }
+
+ 
   handleChange=event=>{
-    this.setState({value:event.target.value});
+   this.setState({value:event.target.value})
+   this.props.changeShelf(this.state.book, event.target.value)
+   event.preventDefault()
   }
 
   render(){
@@ -18,7 +22,7 @@ class ShelfSelect extends Component{
     return(
 
        <div className="book-shelf-changer">
-      <select  value={this.state.value} onChange={this.handleChange} onClick={()=>this.props.changeShelf(this.props.books.book)} >
+      <select  value={this.state.value} onChange={(event) => this.handleChange(event)} >
         <option value="move" disabled >Move to...</option>
         <option value="currentlyReading" >Currently Reading</option>
         <option value="wantToRead" >Want to Read</option>

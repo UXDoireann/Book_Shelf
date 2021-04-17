@@ -45,10 +45,9 @@ class BooksApp extends React.Component {
   }*/
 
   changeShelf=(book,shelf)=>{
-    book=this.props.books.book
-    shelf = book.shelf
+    BooksAPI.update(book, shelf).then((res) => {
     this.setState((currentState)=>({
-      books: currentState.books.filter((book)=>book.shelf!==shelf).concat(currentState.books, book)})}
+      books: currentState.books.filter((bk)=>bk.id!==book.id).concat({...book, shelf})}))})}
       
      
     
@@ -59,7 +58,7 @@ class BooksApp extends React.Component {
       <div>
       <BookSearch showSearchPage={this.state.showSearchPage}/>
       <BookShelf books={this.state.books}
-                 onChangeShelf={this.changeShelf}/>
+                 changeShelf={this.changeShelf}/>
       
       
   
