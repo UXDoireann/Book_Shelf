@@ -1,21 +1,27 @@
 import React, {Component} from 'react'
-//import * as BooksAPI from './BooksAPI'
+import * as BooksAPI from './BooksAPI'
 
 
 class BookSearch extends Component{
 
     state={
-        query:''
-    }
+        query:'',
+        }
 
-    updateQuery=(query)=>{
-        this.setState(()=>({
-            query:query
-           
-        }))
+    updateQuery= async(event)=>{
         
+        try{
+            this.setState(()=>({
+                query:event
+            }))
+
+               const newBooks=await BooksAPI.search(this.state.query)
+               console.log(newBooks)
+            }
+        catch(error){
+            console.log(error)
+        }
     }
-   
 
 render(){
 
