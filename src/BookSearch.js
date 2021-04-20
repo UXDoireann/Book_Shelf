@@ -1,11 +1,13 @@
 import React, {Component} from 'react'
 import * as BooksAPI from './BooksAPI'
+import ShelfSelect from './ShelfSelect'
 
 
 class BookSearch extends Component{
 
     state={
         query:'',
+        newBooks:[],
         }
 
     updateQuery= async(event)=>{
@@ -15,15 +17,23 @@ class BookSearch extends Component{
                 query:event
             }))
 
-               const newBooks=await BooksAPI.search(this.state.query)
-               console.log(newBooks)
-            }
+               const getNewBooks=await BooksAPI.search(this.state.query)
+               console.log(getNewBooks).then(
+                this.setState(()=>({
+                    newBooks:[...this.state.newBooks, getNewBooks]
+                }))) 
+               
+    }
         catch(error){
             console.log(error)
         }
     }
 
+ 
+
 render(){
+
+    //console.log(newBooks)
 
     return(
         <div className="app">
@@ -45,7 +55,19 @@ render(){
         </div>
             </div>
             <div className="search-books-results">
-              <ol className="books-grid"></ol>
+               
+              <ol className="books-grid">
+              {this.state.newBooks.map(book=>(
+                     <li key ={book.title}> 
+            
+                     <div className="book-cover" 
+                     style={{width:128, height:188, backgroundImage: `url(${book.imageLinks.thumbnail})`}}/>
+                     <div className ="book-title" > {book.title} </div> 
+                     <div className ="book-authors" >{book.authors}</div>
+                    <ShelfSelect className="shelf-book-changer" changeShelf={this.props.changeShelf} book={book}/>
+                   
+                    </li>))}
+              </ol>
             </div>
             </div>
             </div>
