@@ -62,7 +62,7 @@ render(){
          
               <ol className="books-grid">
               {this.state.books.map(book=>(
-                     <li key ={book.title}> 
+                     <li key ={book.id}> 
             
                      <div className="book-cover" 
                      style={{width:128, height:188, 
