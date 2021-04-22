@@ -12,23 +12,26 @@ class BookSearch extends Component{
 
     updateQuery= async(event)=>{
         
-        try{
             this.setState(()=>({
                 query:event
             }))
+            console.log(this.state.query)
 
-               const getNewBooks=await BooksAPI.search(this.state.query)
-               console.log(getNewBooks).then(
-                this.setState(()=>({
-                    newBooks:[...this.state.newBooks, getNewBooks]
-                }))) 
-               
-    }
-        catch(error){
-            console.log(error)
-        }
-    }
+               const getNewBooks=await BooksAPI.search(this.state.query);
+               try{
+               console.log(getNewBooks)
+               return getNewBooks
+                }   
+               catch(error){
+              console.log(error)
+             }
+            }
 
+   /* updateQuery(event).then(()=>
+    this.setState(()=>({
+    newBooks:[...this.state.newBooks, getNewBooks]
+    })))*/
+     
  
 
 render(){
