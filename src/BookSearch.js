@@ -12,39 +12,25 @@ class BookSearch extends Component{
 
     updateQuery= async(event)=>{
         
-            this.setState(()=>({
-                query:event
-            }))
-            console.log(this.state.query)
-
-               const getNewBooks= BooksAPI.search(this.state.query)
+            this.setState(()=>({query:event}))
+            console.log(event)
+            const getNewBooks= await BooksAPI.search(event)
             
-               try{  
+            try{  
+             if (getNewBooks.length>1){
+              this.setState(()=>({books: getNewBooks,}))}
                console.log(getNewBooks)
+               console.log(this.state.books)
                return getNewBooks
                }
               catch(error){
               console.log(error)
              }
-            
-            finally{ 
-                if(this.state.query===''){
-                    this.setState(()=>({
-                        newBooks:[]}));
-                    }else{this.setState(()=>({
-              books:[...this.state.books, getNewBooks]}))
-              //console.log(books);
-            }
-               
-             
-            }
+        
         }
             
 
-            /*updateQuery.then(()=>
-            this.setState(()=>({
-            newBooks:[...this.state.newBooks, getNewBooks]
-            })))*/
+            
         
      
  
@@ -71,14 +57,17 @@ render(){
         </div>
         </div>
             </div>
+            
             <div className="search-books-results">
-               
+         
               <ol className="books-grid">
               {this.state.books.map(book=>(
                      <li key ={book.title}> 
             
                      <div className="book-cover" 
-                     style={{width:128, height:188, backgroundImage: `url(${book.imageLinks.thumbnail})`}}/>
+                     style={{width:128, height:188, 
+                   
+                     backgroundImage: `url(${book.imageLinks.thumbnail})`}}/>
                      <div className ="book-title" > {book.title} </div> 
                      <div className ="book-authors" >{book.authors}</div>
                     <ShelfSelect className="shelf-book-changer" changeShelf={this.props.changeShelf} book={book}/>
@@ -86,9 +75,9 @@ render(){
                     </li>))}
               </ol>
             </div>
-            </div>
-            </div>
-            </div>
+              </div>
+                </div>
+                </div>
                ) : (
          
                             
