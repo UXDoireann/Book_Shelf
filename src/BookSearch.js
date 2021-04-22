@@ -7,7 +7,7 @@ class BookSearch extends Component{
 
     state={
         query:'',
-        newBooks:[],
+        books:[],
         }
 
     updateQuery= async(event)=>{
@@ -17,27 +17,41 @@ class BookSearch extends Component{
             }))
             console.log(this.state.query)
 
-               const getNewBooks=await BooksAPI.search(this.state.query);
-               try{
+               const getNewBooks= BooksAPI.search(this.state.query)
+            
+               try{  
                console.log(getNewBooks)
                return getNewBooks
-                }   
-               catch(error){
+               }
+              catch(error){
               console.log(error)
              }
+            
+            finally{ 
+                if(this.state.query===''){
+                    this.setState(()=>({
+                        newBooks:[]}));
+                    }else{this.setState(()=>({
+              books:[...this.state.books, getNewBooks]}))
+              //console.log(books);
             }
+               
+             
+            }
+        }
+            
 
-   /* updateQuery(event).then(()=>
-    this.setState(()=>({
-    newBooks:[...this.state.newBooks, getNewBooks]
-    })))*/
+            /*updateQuery.then(()=>
+            this.setState(()=>({
+            newBooks:[...this.state.newBooks, getNewBooks]
+            })))*/
+        
      
  
 
 render(){
 
-    //console.log(newBooks)
-
+    
     return(
         <div className="app">
         {this.state.showSearchPage ? (
@@ -60,7 +74,7 @@ render(){
             <div className="search-books-results">
                
               <ol className="books-grid">
-              {this.state.newBooks.map(book=>(
+              {this.state.books.map(book=>(
                      <li key ={book.title}> 
             
                      <div className="book-cover" 
