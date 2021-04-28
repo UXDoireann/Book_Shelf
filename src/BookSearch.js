@@ -1,3 +1,4 @@
+
 import React, {Component} from 'react'
 import * as BooksAPI from './BooksAPI'
 import ShelfSelect from './ShelfSelect'
@@ -14,10 +15,13 @@ class BookSearch extends Component{
         
             this.setState(()=>({query:event}))
             console.log(event)
+
+            
+           
             const getNewBooks= await BooksAPI.search(event)
             
             try{  
-             if (getNewBooks.length>1){
+             if (getNewBooks!==undefined && getNewBooks.length>1){
               this.setState(()=>({books: getNewBooks,}))}
                console.log(getNewBooks)
                console.log(this.state.books)
@@ -27,9 +31,9 @@ class BookSearch extends Component{
               console.log(error)
              }
         
-        }
+        
 
-
+    }
             
 
             
@@ -39,13 +43,22 @@ class BookSearch extends Component{
 
 render(){
   const searchBooks = this.state.books
+  const books = this.props.books
  
 
+ const shelfAssignBooks = searchBooks.filter(book=>book.id!==books[0].id)
   const noShelf=(book)=>{
-    book["shelf"]="none";
+    book["shelf"]="none"
   }
+  shelfAssignBooks.forEach(noShelf);
 
-  searchBooks.forEach(noShelf);
+ const booksWithImages = searchBooks.filter(book=>book.imageLinks!==undefined)
+
+ 
+
+
+
+
     
     return(
         <div className="app">
@@ -68,9 +81,11 @@ render(){
             </div>
             
             <div className="search-books-results">
-         
+              {!booksWithImages.error &&(
+
               <ol className="books-grid">
-              {this.state.books.map(book=>(
+              {this.state.query!==''&&
+              booksWithImages.map(book=>(
                      <li key ={book.id}> 
             
                      <div className="book-cover" 
@@ -82,8 +97,9 @@ render(){
                     <ShelfSelect className="shelf-book-changer" changeShelf={this.props.changeShelf} book={book} />
                    
                     </li>))}
+                    
               </ol>
-            </div>
+               )} </div>
               </div>
                 </div>
                 </div>
