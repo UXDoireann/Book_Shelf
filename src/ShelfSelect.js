@@ -22,7 +22,7 @@ class ShelfSelect extends Component{
     return(
 
        <div className="book-shelf-changer">
-      <select  value={this.props.value} onChange={(event) => this.handleChange(event)} >
+      <select  value={this.props.book.shelf} onChange={(event) => this.handleChange(event)} >
         <option value="move" disabled>Move to...</option>
         <option value="currentlyReading" >Currently Reading</option>
         <option value="wantToRead" >Want to Read</option>
