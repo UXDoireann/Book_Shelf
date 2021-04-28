@@ -28,6 +28,8 @@ class BookSearch extends Component{
              }
         
         }
+
+
             
 
             
@@ -36,7 +38,14 @@ class BookSearch extends Component{
  
 
 render(){
+  const searchBooks = this.state.books
+ 
 
+  const noShelf=(book)=>{
+    book["shelf"]="none";
+  }
+
+  searchBooks.forEach(noShelf);
     
     return(
         <div className="app">
@@ -70,7 +79,7 @@ render(){
                      backgroundImage: `url(${book.imageLinks.thumbnail})`}}/>
                      <div className ="book-title" > {book.title} </div> 
                      <div className ="book-authors" >{book.authors}</div>
-                    <ShelfSelect className="shelf-book-changer" changeShelf={this.props.changeShelf} book={book}/>
+                    <ShelfSelect className="shelf-book-changer" changeShelf={this.props.changeShelf} book={book} />
                    
                     </li>))}
               </ol>
