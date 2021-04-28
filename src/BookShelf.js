@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import ShelfSelect from './ShelfSelect'
+import {Link} from 'react-router-dom'
 
 
 class BookShelf extends Component{
@@ -69,11 +70,11 @@ class BookShelf extends Component{
 </div>
 <div className="open-search">
    
-<a href='#search'
-onClick={this.props.onNavigate}
+<Link 
+to='/search'
 className="open-search"><button></button>
    
-</a>
+</Link>
 
 </div>
 

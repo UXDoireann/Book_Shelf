@@ -3,8 +3,7 @@ import './App.css'
 import BookShelf from './BookShelf'
 import * as BooksAPI from './BooksAPI'
 import BookSearch from './BookSearch'
-
-
+import {Route} from 'react-router-dom'
 
 class BooksApp extends React.Component {
   state = {
@@ -48,14 +47,16 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div>
-     {this.state.screen==='bookshelf' &&( 
-     <BookShelf books={this.state.books}
+        <Route exact path='/' render={()=>(
+      <BookShelf books={this.state.books}
       changeShelf={this.changeShelf}
-      onNavigate={()=>{this.setState(()=>({screen:'search'}))}}/>)}
+      onNavigate={()=>{this.setState(()=>({screen:'search'}))}}/>
+        )}/>
       
-      {this.state.screen==='search'&&(
-      <BookSearch showSearchPage={this.state.showSearchPage} 
-      books={this.state.books} changeShelf={this.changeShelf}/>)}
+      <Route path='/search' render={()=>(
+        <BookSearch books={this.state.books} 
+        changeShelf={this.changeShelf}/>
+      )}/>
   
       </div>
     )
