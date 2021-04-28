@@ -10,6 +10,7 @@ class BooksApp extends React.Component {
   state = {
 
     books:[],
+    screen:'bookshelf',
 
     //query:""
     /**
@@ -18,7 +19,7 @@ class BooksApp extends React.Component {
      * users can use the browser's back and forward buttons to navigate between
      * pages, as well as provide a good URL they can bookmark and share.
      */
-   showSearchPage: false
+   //showSearchPage: false
   }
 
   
@@ -47,12 +48,14 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div>
+     {this.state.screen==='bookshelf' &&( 
+     <BookShelf books={this.state.books}
+      changeShelf={this.changeShelf}
+      onNavigate={()=>{this.setState(()=>({screen:'search'}))}}/>)}
+      
+      {this.state.screen==='search'&&(
       <BookSearch showSearchPage={this.state.showSearchPage} 
-      books={this.state.books} changeShelf={this.changeShelf}/>
-      <BookShelf books={this.state.books}
-                 changeShelf={this.changeShelf}/>
-      
-      
+      books={this.state.books} changeShelf={this.changeShelf}/>)}
   
       </div>
     )

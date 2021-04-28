@@ -67,6 +67,16 @@ class BookShelf extends Component{
 
 
 </div>
+<div className="open-search">
+   
+<a href='#search'
+onClick={this.props.onNavigate}
+className="open-search"><button></button>
+   
+</a>
+
+</div>
+
 </div>
                 )
 }

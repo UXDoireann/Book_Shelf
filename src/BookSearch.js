@@ -16,7 +16,7 @@ class BookSearch extends Component{
             this.setState(()=>({query:event}))
             console.log(event)
 
-            
+            if(event!==''){
            
             const getNewBooks= await BooksAPI.search(event)
             
@@ -34,6 +34,7 @@ class BookSearch extends Component{
         
 
     }
+  }
             
 
             
@@ -62,12 +63,10 @@ render(){
     
     return(
         <div className="app">
-        {this.state.showSearchPage ? (
           <div className="search-books">
             <div className="search-books-bar">
-              <button className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</button>
              <div className="search-books-input-wrapper">
-    <div className="search-books">
+            <div className="search-books">
             <div className="search-books-bar">
               <button className="close-search" >Close</button>
         <div className="search-books-input-wrapper">
@@ -81,10 +80,10 @@ render(){
             </div>
             
             <div className="search-books-results">
-              {!booksWithImages.error &&(
-
+         
+             {booksWithImages.error!=="empty query" &&(
               <ol className="books-grid">
-              {this.state.query!==''&&
+              {this.state.query!=='' &&
               booksWithImages.map(book=>(
                      <li key ={book.id}> 
             
@@ -99,25 +98,26 @@ render(){
                     </li>))}
                     
               </ol>
-               )} </div>
+              )} </div>
               </div>
                 </div>
                 </div>
-               ) : (
+              
          
-                            
-                           
+  </div>           
+             
           
-                <div className="open-search">
+              /*  <div className="open-search">
                   <button onClick={() => this.setState({ showSearchPage: true })}>Add a book</button>
-                </div>
+                </div>*/
             
-            )}
-          </div>
+            
+         
 
-
+                     
     )
-}
-}
+                     }}
+
+
 
 export default BookSearch
