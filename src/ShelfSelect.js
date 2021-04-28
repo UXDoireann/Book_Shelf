@@ -12,8 +12,8 @@ class ShelfSelect extends Component{
 
  
   handleChange=event=>{
-   this.setState({value:event.target.value})
-   this.props.changeShelf(this.props.book, this.state.value)
+   this.setState({value:event.target.value},
+   ()=>this.props.changeShelf(this.props.book, this.state.value));
    event.preventDefault()
   }
 
