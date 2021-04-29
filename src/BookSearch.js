@@ -9,7 +9,7 @@ class BookSearch extends Component{
 
     state={
         query:'',
-        books:[],
+        getNewBooks:[],
         }
 
     updateQuery= async(event)=>{
@@ -23,11 +23,19 @@ class BookSearch extends Component{
             
             try{  
              if (getNewBooks!==undefined && getNewBooks.length>1){
-              this.setState(()=>({books: getNewBooks,}))}
-               console.log(getNewBooks)
-               console.log(this.state.books)
-               return getNewBooks
+              this.setState(()=>({getNewBooks: getNewBooks,}))}
+              else{
+                this.setState(()=>({getNewBooks:[]}))
                }
+               console.log(getNewBooks)
+               console.log(this.state.getNewBooks)
+               
+               
+               return getNewBooks
+               
+               }
+
+
               catch(error){
               console.log(error)
              }
@@ -38,30 +46,32 @@ class BookSearch extends Component{
   }
             
 
-            
-        
-     
- 
-
 render(){
-  const searchBooks = this.state.books
+
+  
+  const searchBooks = this.state.getNewBooks
+ 
   const books = this.props.books
  
+ 
 
- const shelfAssignBooks = searchBooks.filter(book=>book.id!==books[0].id)
+  const shelfCheck = ()=>{
+  for(let i=0; i<books.length;i++){
+ const shelfAssignBooks = searchBooks.filter(book=>book.id!==books[i].id)
   const noShelf=(book)=>{
     book["shelf"]="none"
   }
-  shelfAssignBooks.forEach(noShelf);
+    shelfAssignBooks.forEach(noShelf);
+  }
+}
 
- const booksWithImages = searchBooks.filter(book=>book.imageLinks!==undefined)
+shelfCheck();
 
- 
+  
 
+const booksWithImages =searchBooks.filter(book=>book.imageLinks!==undefined)
 
-
-
-    
+  
     return(
         <div className="app">
           <div className="search-books">
@@ -81,10 +91,10 @@ render(){
         </div>
         </div>
             </div>
-            
+           
             <div className="search-books-results">
          
-             {booksWithImages.error!=="empty query" &&(
+            {booksWithImages!==" " &&(
               <ol className="books-grid">
               {this.state.query!=='' &&
               booksWithImages.map(book=>(
@@ -100,8 +110,8 @@ render(){
                    
                     </li>))}
                     
-              </ol>
-              )} </div>
+              </ol>)}
+               </div>
               </div>
                 </div>
                 </div>
