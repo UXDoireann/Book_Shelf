@@ -29,6 +29,7 @@ class BookSearch extends Component{
                }
                console.log(getNewBooks)
                console.log(this.state.getNewBooks)
+          
                
                
                return getNewBooks
@@ -50,24 +51,13 @@ render(){
 
   
   const searchBooks = this.state.getNewBooks
- 
   const books = this.props.books
- 
- 
 
-  const shelfCheck = ()=>{
-  for(let i=0; i<books.length;i++){
- const shelfAssignBooks = searchBooks.filter(book=>book.id!==books[i].id)
-  const noShelf=(book)=>{
-    book["shelf"]="none"
-  }
-    shelfAssignBooks.forEach(noShelf);
-  }
-}
-
-shelfCheck();
-
-  
+  searchBooks.map(searchBook=>{
+    let check = books.find(shelfBook=>shelfBook.id===searchBook.id)
+    searchBook.shelf= check? check.shelf:'none'
+    return searchBook
+  })
 
 const booksWithImages =searchBooks.filter(book=>book.imageLinks!==undefined)
 
